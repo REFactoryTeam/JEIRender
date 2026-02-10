@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.ref.jeirender.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "jeirender.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "jei.IngredientListRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
