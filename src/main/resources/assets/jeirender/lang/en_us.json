@@ -1,0 +1,8 @@
+{
+  "jeirender.configuration.blacklist": "JEI batch render blacklist",
+  "jeirender.configuration.blacklist.description": "JEI ingredient UIDs in this list are rendered with JEIRender's fallback path instead of JEI's batch renderer.",
+  "jeirender.configuration.blacklist.tooltip": "JEI ingredient UIDs in this list are rendered with JEIRender's fallback path instead of JEI's batch renderer.",
+  "jeirender.configuration.render_log": "Render UID log",
+  "jeirender.configuration.render_log.description": "Log JEI ingredient UIDs while the ingredient list renders. Enable this when collecting IDs for the blacklist.",
+  "jeirender.configuration.render_log.tooltip": "Log JEI ingredient UIDs while the ingredient list renders. Enable this when collecting IDs for the blacklist."
+}

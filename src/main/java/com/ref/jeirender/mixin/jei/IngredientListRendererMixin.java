@@ -15,8 +15,8 @@ import mezz.jei.gui.overlay.IngredientListRenderer;
 import mezz.jei.gui.overlay.IngredientListSlot;
 import mezz.jei.gui.overlay.elements.IElement;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -47,16 +47,16 @@ public abstract class IngredientListRendererMixin {
     }
     IIngredientHelper<T> helper =
         JEIRender$cachedManager.getIngredientHelper(typedIngredient.getType());
-    String uid =
-        helper.getUniqueId(
+    Object uid =
+        helper.getUid(
             typedIngredient.getIngredient(),
             mezz.jei.api.ingredients.subtypes.UidContext.Ingredient);
 
     if (JEIRenderClientConfig.render_log) {
-      JEIRender.THROTTLED_LOGGER.log(uid);
+      JEIRender.THROTTLED_LOGGER.log(uid.toString());
     }
 
-    return JEIRenderClientConfig.blacklist.contains(uid);
+    return JEIRenderClientConfig.blacklist.contains(uid.toString());
   }
 
   @Inject(method = "set(ILjava/util/List;)V", at = @At("HEAD"))

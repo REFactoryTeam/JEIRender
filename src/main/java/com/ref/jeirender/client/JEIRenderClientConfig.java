@@ -4,25 +4,25 @@ import com.ref.jeirender.JEIRender;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
-@Mod.EventBusSubscriber(modid = JEIRender.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = JEIRender.MOD_ID)
 public class JEIRenderClientConfig {
-  private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+  private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-  private static final ForgeConfigSpec.ConfigValue<List<? extends String>> BLACK_LIST =
+  private static final ModConfigSpec.ConfigValue<List<? extends String>> BLACK_LIST =
       BUILDER
           .comment("A black list of JEI Batch Render.")
           .defineListAllowEmpty(
-              "blacklist", List.of("ae2:wrapped_generic_stack"), (obj) -> obj instanceof String);
+              "blacklist", List.of("WrappedGenericStack[wrapped_generic_stack]"), ()->"",(obj) -> obj instanceof String);
 
-  private static final ForgeConfigSpec.BooleanValue RENDER_LOG =
+  private static final ModConfigSpec.BooleanValue RENDER_LOG =
       BUILDER.comment("Render Log").define("render_log", false);
 
-  public static final ForgeConfigSpec SPEC = BUILDER.build();
+  public static final ModConfigSpec SPEC = BUILDER.build();
 
   public static Set<String> blacklist;
   public static boolean render_log;
@@ -32,5 +32,6 @@ public class JEIRenderClientConfig {
     if (event.getConfig().getSpec() != SPEC) return;
     blacklist = new HashSet<>(BLACK_LIST.get());
     render_log = RENDER_LOG.get();
+    JEIRender.THROTTLED_LOGGER.clear();
   }
 }

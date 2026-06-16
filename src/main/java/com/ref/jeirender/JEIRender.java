@@ -3,9 +3,10 @@ package com.ref.jeirender;
 import com.mojang.logging.LogUtils;
 import com.ref.jeirender.client.JEIRenderClientConfig;
 import com.ref.jeirender.client.ThrottledLogger;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import org.slf4j.Logger;
 
 @Mod(JEIRender.MOD_ID)
@@ -18,7 +19,7 @@ public class JEIRender {
   public static final ThrottledLogger THROTTLED_LOGGER =
       new ThrottledLogger("JEIRender-Debug", 5000);
 
-  public JEIRender(FMLJavaModLoadingContext context) {
-    context.registerConfig(ModConfig.Type.CLIENT, JEIRenderClientConfig.SPEC);
+  public JEIRender(IEventBus modEventBus, ModContainer modContainer) {
+    modContainer.registerConfig(ModConfig.Type.CLIENT, JEIRenderClientConfig.SPEC);
   }
 }

@@ -1,0 +1,8 @@
+{
+  "jeirender.configuration.blacklist": "JEI 批量渲染黑名单",
+  "jeirender.configuration.blacklist.description": "列表中的 JEI 配料 UID 会改用 JEIRender 的备用路径渲染，而不是使用 JEI 的批量渲染器。",
+  "jeirender.configuration.blacklist.tooltip": "列表中的 JEI 配料 UID 会改用 JEIRender 的备用路径渲染，而不是使用 JEI 的批量渲染器。",
+  "jeirender.configuration.render_log": "渲染 UID 日志",
+  "jeirender.configuration.render_log.description": "在配料列表渲染时输出 JEI 配料 UID。需要收集黑名单 ID 时可以启用。",
+  "jeirender.configuration.render_log.tooltip": "在配料列表渲染时输出 JEI 配料 UID。需要收集黑名单 ID 时可以启用。"
+}
