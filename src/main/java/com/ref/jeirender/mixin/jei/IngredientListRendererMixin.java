@@ -40,11 +40,10 @@ public abstract class IngredientListRendererMixin {
 
   @Unique
   private <T> boolean JEIRender$isBlacklisted(ITypedIngredient<T> typedIngredient) {
-    if (typedIngredient == null
-        || JEIRender$cachedManager == null
-        || JEIRenderClientConfig.blacklist.isEmpty()) {
+    if (typedIngredient == null || JEIRender$cachedManager == null) {
       return false;
     }
+
     IIngredientHelper<T> helper =
         JEIRender$cachedManager.getIngredientHelper(typedIngredient.getType());
     Object uid =
@@ -56,6 +55,10 @@ public abstract class IngredientListRendererMixin {
       JEIRender.THROTTLED_LOGGER.log(uid.toString());
     }
 
+    if (JEIRenderClientConfig.blacklist.isEmpty()) {
+      return false;
+    }
+
     return JEIRenderClientConfig.blacklist.contains(uid.toString());
   }
 
@@ -63,6 +66,11 @@ public abstract class IngredientListRendererMixin {
   private void onSetHead(int skip, List<?> arg1, CallbackInfo ci) {
     JEIRender$updateCache();
     JEIRender$specialEntries.clear();
+    JEIRender.THROTTLED_LOGGER.clear();
+  }
+
+  @Inject(method = "set(ILjava/util/List;)V", at = @At("TAIL"))
+  private void onSetTail(int skip, List<?> arg1, CallbackInfo ci) {
     JEIRender.THROTTLED_LOGGER.flush();
   }
 

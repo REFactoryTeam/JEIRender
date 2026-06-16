@@ -17,7 +17,10 @@ public class JEIRenderClientConfig {
       BUILDER
           .comment("A black list of JEI Batch Render.")
           .defineListAllowEmpty(
-              "blacklist", List.of("WrappedGenericStack[wrapped_generic_stack]"), ()->"",(obj) -> obj instanceof String);
+              "blacklist",
+              List.of("WrappedGenericStack[wrapped_generic_stack]"),
+              () -> "",
+              (obj) -> obj instanceof String);
 
   private static final ModConfigSpec.BooleanValue RENDER_LOG =
       BUILDER.comment("Render Log").define("render_log", false);

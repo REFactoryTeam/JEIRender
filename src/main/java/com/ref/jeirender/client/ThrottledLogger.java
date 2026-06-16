@@ -8,24 +8,14 @@ import org.apache.logging.log4j.Logger;
 public class ThrottledLogger {
   private final Logger logger;
   private final Set<String> buffer = new LinkedHashSet<>();
-  private final long interval;
-  private long nextLogTime;
 
-  public ThrottledLogger(String name, long intervalMs) {
+  public ThrottledLogger(String name) {
     this.logger = LogManager.getLogger(name);
-    this.interval = intervalMs;
-    this.nextLogTime = 0;
   }
 
   public void log(String entry) {
     synchronized (buffer) {
       buffer.add(entry);
-
-      long currentTime = System.currentTimeMillis();
-      if (currentTime >= nextLogTime) {
-        flush();
-        nextLogTime = currentTime + interval;
-      }
     }
   }
 

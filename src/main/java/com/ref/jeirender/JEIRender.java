@@ -16,8 +16,7 @@ public class JEIRender {
 
   public static final Logger LOGGER = LogUtils.getLogger();
 
-  public static final ThrottledLogger THROTTLED_LOGGER =
-      new ThrottledLogger("JEIRender-Debug", 5000);
+  public static final ThrottledLogger THROTTLED_LOGGER = new ThrottledLogger("JEIRender-Debug");
 
   public JEIRender(IEventBus modEventBus, ModContainer modContainer) {
     modContainer.registerConfig(ModConfig.Type.CLIENT, JEIRenderClientConfig.SPEC);
